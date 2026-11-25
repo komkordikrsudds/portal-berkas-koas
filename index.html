@@ -3,14 +3,67 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbyYI5IjsIOiVgrWxns2SDCWHhoob8eIPFQOnQzlLNpc-tsfXotPNrW02_pMxCVcWR1rTA/exec">
-  <title>Membuka Sistem Pengumpulan Berkas Koas</title>
-  <script>
-    window.location.replace("https://script.google.com/macros/s/AKfycbyYI5IjsIOiVgrWxns2SDCWHhoob8eIPFQOnQzlLNpc-tsfXotPNrW02_pMxCVcWR1rTA/exec");
-  </script>
+  <meta name="theme-color" content="#123b5d">
+  <title>Menyiapkan Portal Pengumpulan Berkas Koas</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      padding: 24px; font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      color: #183247; background: linear-gradient(145deg, #edf5fa, #f8fbfd);
+    }
+    .panel {
+      width: min(100%, 420px); padding: 36px 28px; text-align: center;
+      background: #fff; border: 1px solid #e1ebf1; border-radius: 20px;
+      box-shadow: 0 18px 55px rgba(20, 58, 84, .10);
+    }
+    .symbol {
+      width: 58px; height: 58px; margin: 0 auto 20px; display: grid;
+      place-items: center; border-radius: 17px; color: white;
+      background: #164d70; font-size: 27px;
+    }
+    h1 { margin: 0 0 9px; font-size: 20px; }
+    p { margin: 0; color: #607789; font-size: 14px; line-height: 1.6; }
+    .spinner {
+      width: 34px; height: 34px; margin: 25px auto 13px;
+      border: 3px solid #dce9f0; border-top-color: #1675a8;
+      border-radius: 50%; animation: spin .8s linear infinite;
+    }
+    .status { font-size: 13px; color: #45677d; }
+    .track {
+      height: 5px; margin: 20px 0 0; overflow: hidden;
+      background: #edf3f6; border-radius: 99px;
+    }
+    .bar {
+      width: 35%; height: 100%; border-radius: inherit;
+      background: #2385b5; animation: load 1.8s ease-in-out infinite;
+    }
+    a { display: inline-block; margin-top: 22px; color: #126b9b; font-size: 13px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes load { 0% { transform: translateX(-110%); } 100% { transform: translateX(310%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .spinner, .bar { animation-duration: 2.5s; }
+    }
+  </style>
 </head>
 <body>
-  <p>Membuka aplikasi Sistem Pengumpulan Berkas Koas…</p>
-  <p>Jika tidak otomatis terbuka, <a href="https://script.google.com/macros/s/AKfycbyYI5IjsIOiVgrWxns2SDCWHhoob8eIPFQOnQzlLNpc-tsfXotPNrW02_pMxCVcWR1rTA/exec">klik di sini</a>.</p>
+  <main class="panel" aria-live="polite">
+    <div class="symbol" aria-hidden="true">✓</div>
+    <h1>Portal Pengumpulan Berkas Koas</h1>
+    <p>Mohon tunggu sebentar. Kami sedang menyiapkan sesi dan menghubungkan Anda ke aplikasi.</p>
+    <div class="spinner" aria-hidden="true"></div>
+    <div class="status" id="status">Menyiapkan sesi...</div>
+    <div class="track" aria-hidden="true"><div class="bar"></div></div>
+    <a id="manual" href="https://script.google.com/macros/s/AKfycbyYI5IjsIOiVgrWxns2SDCWHhoob8eIPFQOnQzlLNpc-tsfXotPNrW02_pMxCVcWR1rTA/exec">Klik di sini jika halaman tidak terbuka otomatis</a>
+  </main>
+  <script>
+    const appUrl = "https://script.google.com/macros/s/AKfycbyYI5IjsIOiVgrWxns2SDCWHhoob8eIPFQOnQzlLNpc-tsfXotPNrW02_pMxCVcWR1rTA/exec";
+    const status = document.getElementById("status");
+    // Tampilan loading singkat; sesi sebenarnya dikelola oleh Google Apps Script.
+    setTimeout(() => {
+      status.textContent = "Membuka aplikasi...";
+      window.location.replace(appUrl);
+    }, 2200);
+  </script>
 </body>
 </html>
